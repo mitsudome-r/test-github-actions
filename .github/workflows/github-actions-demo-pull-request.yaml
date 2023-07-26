@@ -11,7 +11,7 @@ jobs:
     uses: autowarefoundation/autoware-github-actions/.github/workflows/prevent-no-label-execution.yaml@v1
     with:
       label: run-ci
-  Explore-GitHub-Actions:
+  Explore-GitHub-Actions1:
     needs: prevent-no-label-execution
     if: ${{ needs.prevent-no-label-execution.outputs.run == 'true' }}
     runs-on: ubuntu-latest
