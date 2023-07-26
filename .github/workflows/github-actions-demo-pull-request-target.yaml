@@ -13,6 +13,7 @@ jobs:
       label: run-ci
   Explore-GitHub-Actions:
     needs: prevent-no-label-execution
+    if: ${{ needs.prevent-no-label-execution.outputs.run == 'true' }}
     runs-on: ubuntu-latest
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
