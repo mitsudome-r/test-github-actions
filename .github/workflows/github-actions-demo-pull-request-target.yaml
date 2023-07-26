@@ -13,9 +13,18 @@ jobs:
       label: run-ci
   Explore-GitHub-Actions2:
     needs: prevent-no-label-execution
-    if: ${{ needs.prevent-no-label-execution.outputs.run == 'true' }}
     runs-on: ubuntu-latest
     steps:
+      - name: status check
+        run: |
+          passed="${{ needs.prevent-no-label-execution.outputs.run }}"
+          if [[ $passed == "true" ]]; then
+            echo "label passed"
+            exit 0
+          else
+            echo "label failed"
+            exit 1
+          fi
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
